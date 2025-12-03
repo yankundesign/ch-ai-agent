@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({setIsSideNavExpanded, theme, setTheme}: 
       <Appheader className="header">
         <div slot="leading" className="leadingSlot">
           <Button variant="tertiary" size={32} prefixIcon="list-menu-bold" aria-label="icon button" onClick={handleSideNavToggle}></Button>
-          <Brandvisual name={`momentum-design-logo-${theme}-bw-horizontal`} className='brandLogo'></Brandvisual>
+          <Brandvisual name={`webex-logo-lockup-dark-bw-gradient-horizontal`} className='brandLogo'></Brandvisual>
         </div>
         <div slot="center">
           <Searchfield className="searchfield" placeholder='Search'></Searchfield>

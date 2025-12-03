@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="home-page-middle-section">
                     <div className="home-page-middle-section-first-line">
-                        <Text type="heading-midsize-bold" tagname='span'>Page title</Text>
+                        <Text type="heading-midsize-bold" tagname='span'>Overview</Text>
                         <Button id="info-icon-button" variant="tertiary" size={20} prefixIcon="info-badge-filled" aria-label="info icon button"></Button>
                         <ToggleTip triggerID='info-icon-button' placement='bottom'>
                             This is a description about the page title.
@@ -24,6 +24,9 @@ const HomePage: React.FC = () => {
                         <Text type="body-midsize-medium" tagname='span'>Description</Text>
                     </div>
                 </div>
+            </div>
+            <div className="home-page-content">
+                <p>Welcome to the Overview page</p>
             </div>
         </div>
     );

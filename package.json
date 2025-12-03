@@ -21,14 +21,17 @@
     "@momentum-design/tokens": "0.7.0"
   },
   "dependencies": {
-    "@momentum-design/brand-visuals": "0.16.0",
-    "@momentum-design/components": "0.104.15",
-    "@momentum-design/fonts": "0.2.3",
-    "@momentum-design/icons": "0.34.0",
-    "@momentum-design/illustrations": "0.2.4",
-    "@momentum-design/tokens": "0.7.0",
+    "@momentum-design/animations": "^0.4.3",
+    "@momentum-design/brand-visuals": "^0.16.0",
+    "@momentum-design/components": "^0.104.15",
+    "@momentum-design/fonts": "^0.2.3",
+    "@momentum-design/icons": "^0.34.0",
+    "@momentum-design/illustrations": "^0.2.4",
+    "@momentum-design/tokens": "^0.7.0",
+    "@momentum-design/utils": "^0.8.1",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.10.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -37,6 +40,7 @@
     "@types/node": "^24.3.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.0.0",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",

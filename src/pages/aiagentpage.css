@@ -1,0 +1,190 @@
+.ai-agent-page-wrapper {
+    --local-padding: 1.5rem;
+    height: calc(100% - 2 * var(--local-padding));
+    width: calc(100% - 2 * var(--local-padding));
+    border-top-left-radius: 1rem;
+    background-color: var(--mds-color-theme-background-glass-light);
+    padding: var(--local-padding);
+    backdrop-filter: blur(400px);
+    overflow-y: auto;
+}
+
+.ai-agent-page-header {
+    height: 4rem;
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ai-agent-page-left-section {
+    display: flex;
+    align-items: center;
+}
+
+.ai-agent-page-middle-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ai-agent-page-middle-section-first-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Tabs */
+.ai-agent-tabs {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--mds-color-theme-outline-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.ai-agent-tab {
+    background: none;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: var(--mds-color-theme-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s ease;
+}
+
+.ai-agent-tab:hover {
+    color: var(--mds-color-theme-text-primary);
+}
+
+.ai-agent-tab.active {
+    color: var(--mds-color-theme-text-primary);
+    border-bottom-color: var(--mds-color-theme-outline-primary);
+}
+
+/* Metrics strip */
+.ai-agent-metrics {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background-color: var(--mds-color-theme-background-secondary);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.ai-agent-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ai-agent-metric-label {
+    color: var(--mds-color-theme-text-secondary);
+}
+
+.ai-agent-metric-value {
+    color: var(--mds-color-theme-text-primary);
+}
+
+/* View controls */
+.ai-agent-view-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-agent-view-toggle {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Content area */
+.ai-agent-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.ai-agent-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-agent-section-title {
+    line-height: 1.2;
+}
+
+/* Cards grid */
+.ai-agent-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 1200px) {
+    .ai-agent-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .ai-agent-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Empty state */
+.ai-agent-empty-state {
+    padding: 2rem;
+    text-align: center;
+    background-color: var(--mds-color-theme-background-secondary);
+    border-radius: 8px;
+    color: var(--mds-color-theme-text-secondary);
+}
+
+/* Table */
+.ai-agent-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--mds-color-theme-background-primary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ai-agent-table thead {
+    background-color: var(--mds-color-theme-background-secondary);
+}
+
+.ai-agent-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--mds-color-theme-text-secondary);
+}
+
+.ai-agent-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--mds-color-theme-outline-secondary);
+    font-size: 14px;
+}
+
+.ai-agent-table-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ai-agent-table-row:hover {
+    background-color: var(--mds-color-theme-background-secondary);
+}
+
+/* Placeholder */
+.ai-agent-placeholder {
+    padding: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
