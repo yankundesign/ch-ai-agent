@@ -115,6 +115,7 @@ function rewriteDynamicImportsRollup({packageName}: {packageName?: 'animations' 
 }
 
 export default defineConfig({
+  base: '/ch-ai-agent/', 
   plugins: [
     react(),
   ],

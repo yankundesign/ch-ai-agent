@@ -67,6 +67,7 @@ const AgentCard: React.FC<AgentCardProps> = ({ agent, onClick }) => {
                 title={agent.owner}
                 initials={getInitials(agent.owner)}
                 className="agent-card-avatar"
+                id={`avatar-${agent.id}`}
               />
               <ToggleTip triggerID={`avatar-${agent.id}`} placement='top'>
                 {agent.owner}

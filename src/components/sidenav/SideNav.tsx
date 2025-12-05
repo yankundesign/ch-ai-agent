@@ -33,7 +33,7 @@ const SideNav: React.FC<SideNavProps> = ({ isSideNavExpanded, setIsSideNavExpand
                 </MenuSection>
                 <MenuSection slot="scrollable-menubar" showDivider headerText="AI studio">
                     <NavMenuItem iconName="sparkle-regular" navId="3" label="AI hub" onClick={() => handleNavItemClick('/')}></NavMenuItem>
-                    <NavMenuItem iconName="bot-regular" navId="4" label="AI agent" onClick={() => handleNavItemClick('/ai-agent')} active={location.pathname === '/ai-agent'}></NavMenuItem>
+                    <NavMenuItem iconName="bot-regular" navId="4" label="Control hub agent" onClick={() => handleNavItemClick('/ai-agent')} active={location.pathname === '/ai-agent'}></NavMenuItem>
                 </MenuSection>
                 <MenuSection slot="scrollable-menubar" showDivider headerText="Monitoring">
                     <NavMenuItem iconName="analysis-regular" navId="5" label="Analytics" onClick={() => handleNavItemClick('/')}></NavMenuItem>
