@@ -2,6 +2,8 @@ import './App.css'
 import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import AIAgentPage from './pages/AIAgentPage'
+import AgentDetailsPage from './pages/AgentDetailsPage'
+import RunAgentPage from './pages/RunAgentPage'
 import '@momentum-design/fonts/dist/css/fonts.css';
 import '@momentum-design/tokens/dist/css/components/complete.css';
 import { ThemeProvider, IconProvider } from '@momentum-design/components/react'
@@ -12,17 +14,19 @@ function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   return (
     <BrowserRouter>
-      <ThemeProvider themeclass={`mds-theme-stable-${theme}Webex`}>
-        <IconProvider iconSet='momentum-icons'>
-          <MainLayout theme={theme} setTheme={setTheme}>
+    <ThemeProvider themeclass={`mds-theme-stable-${theme}Webex`}>
+      <IconProvider iconSet='momentum-icons'>
+        <MainLayout theme={theme} setTheme={setTheme}>
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/ai-agent" element={<AIAgentPage />} />
+              <Route path="/ai-agent/:agentId" element={<AgentDetailsPage />} />
+              <Route path="/ai-agent/:agentId/run" element={<RunAgentPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-          </MainLayout>
-        </IconProvider>
-      </ThemeProvider>
+        </MainLayout>
+      </IconProvider>
+    </ThemeProvider>
     </BrowserRouter>
   )
 }

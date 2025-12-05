@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chip, Text } from '@momentum-design/components/react';
-import type { Agent } from '../../types/agent.types';
+import { Avatar, Text, ToggleTip } from '@momentum-design/components/react';
+import type { Agent, AgentCategory } from '../../types/agent.types';
 import { getHealthText } from '../../utils/agentHelpers';
 import './agentcard.css';
 
@@ -8,6 +8,27 @@ interface AgentCardProps {
   agent: Agent;
   onClick: () => void;
 }
+
+// Get category badge color
+const getCategoryColor = (category: AgentCategory): string => {
+  const colorMap: Record<AgentCategory, string> = {
+    'Security': 'category-security',
+    'Automation': 'category-automation',
+    'License optimization': 'category-license',
+    'Meeting quality': 'category-meeting',
+    'Other': 'category-default'
+  };
+  return colorMap[category] || 'category-default';
+};
+
+// Get initials from name
+const getInitials = (name: string): string => {
+  return name
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase())
+    .slice(0, 2)
+    .join('');
+};
 
 const AgentCard: React.FC<AgentCardProps> = ({ agent, onClick }) => {
   const isControlHub = agent.source === 'controlHub';
@@ -26,7 +47,9 @@ const AgentCard: React.FC<AgentCardProps> = ({ agent, onClick }) => {
         <Text type="body-large-bold" tagname="div" className="agent-card-name">
           {agent.name}
         </Text>
-        <Chip label={agent.category} size={24} />
+        <div className={`agent-card-category-badge ${getCategoryColor(agent.category)}`}>
+          {agent.category}
+        </div>
       </div>
       
       <div className="agent-card-description">
@@ -38,13 +61,21 @@ const AgentCard: React.FC<AgentCardProps> = ({ agent, onClick }) => {
       {!isControlHub && (
         <div className="agent-card-meta">
           {agent.owner && (
-            <Text type="body-small-medium" tagname="span" className="agent-card-meta-item">
-              Owner: {agent.owner}
-            </Text>
+            <>
+              <Avatar 
+                size={24} 
+                title={agent.owner}
+                initials={getInitials(agent.owner)}
+                className="agent-card-avatar"
+              />
+              <ToggleTip triggerID={`avatar-${agent.id}`} placement='top'>
+                {agent.owner}
+              </ToggleTip>
+            </>
           )}
           {agent.team && (
             <Text type="body-small-medium" tagname="span" className="agent-card-meta-item">
-              Team: {agent.team}
+              {agent.team}
             </Text>
           )}
         </div>

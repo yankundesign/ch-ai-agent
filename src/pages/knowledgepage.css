@@ -1,0 +1,18 @@
+.knowledge-page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+.knowledge-page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.knowledge-page-header-row h2 {
+  line-height: 1.2;
+}
+

@@ -6,6 +6,50 @@
   background-attachment: fixed;
 }
 
+/* Global icon sizing fix for Momentum Design System */
+mdc-icon,
+mdc-icon svg,
+.mdc-icon,
+.mdc-icon svg {
+  width: var(--icon-size, 16px) !important;
+  height: var(--icon-size, 16px) !important;
+  min-width: var(--icon-size, 16px) !important;
+  min-height: var(--icon-size, 16px) !important;
+  max-width: var(--icon-size, 16px) !important;
+  max-height: var(--icon-size, 16px) !important;
+}
+
+/* Allow size attribute to override */
+mdc-icon[size="20"],
+mdc-icon[size="20"] svg {
+  --icon-size: 20px;
+}
+
+mdc-icon[size="24"],
+mdc-icon[size="24"] svg {
+  --icon-size: 24px;
+}
+
+mdc-icon[size="32"],
+mdc-icon[size="32"] svg {
+  --icon-size: 32px;
+}
+
+mdc-icon[size="40"],
+mdc-icon[size="40"] svg {
+  --icon-size: 40px;
+}
+
+mdc-icon[size="48"],
+mdc-icon[size="48"] svg {
+  --icon-size: 48px;
+}
+
+mdc-icon[size="64"],
+mdc-icon[size="64"] svg {
+  --icon-size: 64px;
+}
+
 body {
   margin: 0;
   display: flex;

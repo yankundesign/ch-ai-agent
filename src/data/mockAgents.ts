@@ -4,12 +4,12 @@ export const mockAgents: Agent[] = [
   // Control Hub agents (templates)
   {
     id: 'ch-1',
-    name: 'License Optimizer Pro',
-    category: 'License optimization',
-    description: 'Automatically identifies unused licenses and suggests optimization opportunities to reduce costs.',
+    name: 'Calling settings transfer',
+    category: 'Automation',
+    description: 'Automatically transfer calling settings from one user to another.',
     source: 'controlHub',
     status: 'active',
-    lastRunAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+    lastRunAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
   },
   {
     id: 'ch-2',

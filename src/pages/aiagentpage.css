@@ -1,10 +1,10 @@
 .ai-agent-page-wrapper {
-    --local-padding: 1.5rem;
+    --local-padding: 48px;
     height: calc(100% - 2 * var(--local-padding));
     width: calc(100% - 2 * var(--local-padding));
     border-top-left-radius: 1rem;
     background-color: var(--mds-color-theme-background-glass-light);
-    padding: var(--local-padding);
+    padding: 40px;
     backdrop-filter: blur(400px);
     overflow-y: auto;
 }
@@ -87,6 +87,51 @@
     color: var(--mds-color-theme-text-primary);
 }
 
+/* Header row with create button */
+.ai-agent-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.ai-agent-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Searchfield styling */
+.ai-agent-searchfield {
+    min-width: 220px;
+}
+
+/* Filter select */
+.ai-agent-filter-select {
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    border: 1px solid var(--mds-color-theme-outline-secondary);
+    border-radius: 0.5rem;
+    background-color: var(--mds-color-theme-background-primary);
+    color: var(--mds-color-theme-text-primary);
+    font-size: var(--mds-type-body-midsize-font-size);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+}
+
+.ai-agent-filter-select:hover {
+    border-color: var(--mds-color-theme-outline-primary);
+}
+
+.ai-agent-filter-select:focus {
+    outline: none;
+    border-color: var(--mds-color-theme-outline-primary);
+    box-shadow: 0 0 0 2px var(--mds-color-theme-outline-primary-translucent, rgba(70, 130, 180, 0.2));
+}
+
 /* View controls */
 .ai-agent-view-controls {
     display: flex;
@@ -111,27 +156,28 @@
     flex-direction: column;
 }
 
+.ai-agent-section-org {
+    margin-top: 4rem; /* Significant spacing above "Your organization" section */
+}
+
 .ai-agent-section-title {
-    line-height: 1.2;
+    align-items: center;
+    display: flex;
+    height: 64px;
 }
 
 /* Cards grid */
 .ai-agent-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 24px;
 }
 
-@media (min-width: 1200px) {
-    .ai-agent-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .ai-agent-cards-grid {
-        grid-template-columns: 1fr;
-    }
+.ai-agent-cards-grid > * {
+    flex-grow: 1;
+    flex-basis: 320px;
+    max-width: 480px;
 }
 
 /* Empty state */
