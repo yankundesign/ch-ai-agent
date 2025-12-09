@@ -12,6 +12,16 @@
   gap: 24px;
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Reset Momentum Text component padding/margin for better control */
 .agent-details-wrapper mdc-text {
   margin: 0 !important;
@@ -164,6 +174,11 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.workflow-card {
+  padding: 16px !important;
+  gap: 8px !important;
+}
+
 .card-title {
   color: var(--mds-color-theme-text-primary);
   line-height: 1;
@@ -171,6 +186,12 @@
   height: 40px;
   display: flex;
   align-items: center;
+}
+
+.workflow-card .card-title {
+  height: auto !important;
+  min-height: 24px;
+  margin-bottom: 8px;
 }
 
 .card-title h3 {
@@ -358,11 +379,6 @@
 }
 
 /* Workflow Card - Timeline Style */
-.workflow-card {
-  min-height: 500px;
-  flex: 1;
-}
-
 .workflow-visualization {
   display: flex;
   flex-direction: column;
@@ -412,6 +428,10 @@
   flex-direction: column;
   gap: 4px;
   padding-bottom: 24px;
+}
+
+.workflow-step-timeline:last-child .step-content {
+  padding-bottom: 0;
 }
 
 .step-content > div:first-child {
@@ -633,4 +653,3 @@
     grid-template-columns: 1fr;
   }
 }
-

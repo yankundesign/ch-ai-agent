@@ -54,7 +54,7 @@ const AIAgentPage: React.FC = () => {
                 className={`ai-agent-tab ${isTabActive('agents') ? 'active' : ''}`}
                 onClick={() => handleTabChange('agents')}
             >
-                AI agents
+                Skill
             </button>
             <button 
                 className={`ai-agent-tab ${isTabActive('knowledge') ? 'active' : ''}`}
@@ -149,7 +149,7 @@ const AIAgentPage: React.FC = () => {
                             
                             {/* Create button */}
                             <Button variant="primary" onClick={() => console.log('Create agent')}>
-                                Create agent
+                                Create skill
                             </Button>
                         </div>
                     </div>

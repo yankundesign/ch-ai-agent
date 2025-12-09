@@ -133,15 +133,61 @@
   min-height: 0; /* Allow flex shrinking */
 }
 
+/* Configuration Section - Can be disabled */
+.config-section {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
 /* Configuration Form */
 .config-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   padding: 16px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 0;
+  min-width: 0;
+}
+
+/* Remove default fieldset styling */
+fieldset.config-form {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px;
+}
+
+fieldset.config-form:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* PRIMARY ACTIONS SECTION - Always Enabled, Never Affected by Form State */
+.primary-actions-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: rgba(13, 110, 253, 0.08); /* Blue tint to show it's separate */
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.primary-actions-section > mdc-button {
+  width: 100%;
+}
+
+/* Approval Container - Inside Primary Actions */
+.approval-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: rgba(251, 146, 60, 0.15);
+  border: 1px solid rgba(251, 146, 60, 0.4);
+  border-radius: 8px;
 }
 
 .form-title {
@@ -265,6 +311,35 @@
 
 .form-submit-btn {
   margin-top: 8px;
+}
+
+/* Approval Banner and Actions (inside primary-actions-section) */
+
+.approval-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fb923c;
+}
+
+.approval-banner mdc-icon {
+  color: #fb923c;
+}
+
+.approval-hint {
+  color: var(--mds-color-theme-text-secondary);
+  margin: 0;
+  font-size: 13px;
+}
+
+.approval-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.approval-actions mdc-button {
+  flex: 1;
 }
 
 /* Chat Messages */

@@ -11,6 +11,7 @@ export const mockAgentDatabase: AgentDetails[] = [
     complexity: 'Low Risk',
     description: 'Seamlessly transfers Webex Calling configurations from a users to another. Automates the migration of extensions, call handling rules, and device associations to ensure business continuity.',
     expectedOutcome: 'Target user will inherit all extensions and routing rules. Original user profile remains unchanged.',
+    whenToUse: 'When migrating Webex Calling settings from one user to another (e.g., replacement, role change, or shared account cleanup).',
     riskLevel: 'safe',
     documentationUrl: 'https://developer.webex.com/docs/api/calling',
     owner: {
@@ -73,8 +74,14 @@ export const mockAgentDatabase: AgentDetails[] = [
     knowledgeSources: ['License_Compatibility_Matrix.pdf'],
     metrics: {
       successRate: 98,
-      avgDuration: 120,
+      runsLast30Days: 47,
+      uniqueAdmins: 12,
+      usersMigrated: 89,
+      guardrailBlocks: 3,
+      incidentsReported: 0,
+      averageDurationSeconds: 120,
       totalRuns: 47,
+      avgDuration: 120, // legacy
       lastRunTime: new Date(Date.now() - 45 * 60 * 1000).toISOString() // 45 min ago
     },
     guardrails: [
@@ -201,8 +208,14 @@ export const mockAgentDatabase: AgentDetails[] = [
     knowledgeSources: ['Sales_Playbook_2025.pdf'],
     metrics: {
       successRate: 96,
-      avgDuration: 3.2,
+      runsLast30Days: 1547,
+      uniqueAdmins: 87,
+      usersMigrated: 0, // Not applicable for this agent type
+      guardrailBlocks: 12,
+      incidentsReported: 1,
+      averageDurationSeconds: 192, // 3.2 minutes
       totalRuns: 1547,
+      avgDuration: 3.2, // legacy
       lastRunTime: new Date(Date.now() - 30 * 60 * 1000).toISOString() // 30 min ago
     },
     guardrails: [
@@ -328,8 +341,14 @@ export const mockAgentDatabase: AgentDetails[] = [
     knowledgeSources: [],
     metrics: {
       successRate: 100,
-      avgDuration: 4.5,
+      runsLast30Days: 324,
+      uniqueAdmins: 3,
+      usersMigrated: 0, // Not applicable for this agent type
+      guardrailBlocks: 0,
+      incidentsReported: 0,
+      averageDurationSeconds: 270, // 4.5 minutes
       totalRuns: 324,
+      avgDuration: 4.5, // legacy
       lastRunTime: new Date(Date.now() - 60 * 60 * 1000).toISOString() // 1 hour ago
     },
     guardrails: [

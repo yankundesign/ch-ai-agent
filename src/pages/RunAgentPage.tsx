@@ -383,11 +383,10 @@ const RunAgentPage: React.FC = () => {
               <Text type="heading-small-bold" tagname="h3">Control Panel</Text>
             </div>
             
-            {/* Message Feed */}
-            <div className="message-feed">
-              {mode === 'form' ? (
-                // Initial Configuration Form
-                <div className="config-form">
+            {/* Configuration Section - Can be disabled */}
+            {mode === 'form' && (
+              <div className="config-section">
+                <fieldset disabled={isReviewPending} className="config-form">
                   <Text type="body-large-bold" tagname="div" className="form-title">
                     Transfer Configuration
                   </Text>
@@ -440,59 +439,97 @@ const RunAgentPage: React.FC = () => {
                       <span className="toggle-slider"></span>
                     </label>
                   </div>
-                  
-                  <Button 
-                    variant="primary"
-                    className="form-submit-btn"
-                    onClick={handleStartTransfer}
-                  >
-                    Start transfer
-                  </Button>
-                </div>
-              ) : (
-                // Chat Mode - Show Messages
-                <>
-                  {messages.map((msg) => (
-                    <div key={msg.id} className={`chat-message chat-message-${msg.type}`}>
-                      {msg.type === 'user' && (
-                        <Avatar size={32} initials="YW" title="You" />
-                      )}
-                      {msg.type === 'system' && (
-                        <div className="system-icon">
-                          <Icon name="bot-regular" size={20} />
-                        </div>
-                      )}
-                      <div className="message-content">
-                        <Text type="body-midsize-medium" tagname="p">
-                          {msg.content}
-                        </Text>
+                </fieldset>
+              </div>
+            )}
+            
+            {/* Message Feed - Chat Mode */}
+            {mode === 'chat' && (
+              <div className="message-feed">
+                {messages.map((msg) => (
+                  <div key={msg.id} className={`chat-message chat-message-${msg.type}`}>
+                    {msg.type === 'user' && (
+                      <Avatar size={32} initials="YW" title="You" />
+                    )}
+                    {msg.type === 'system' && (
+                      <div className="system-icon">
+                        <Icon name="bot-regular" size={20} />
                       </div>
+                    )}
+                    <div className="message-content">
+                      <Text type="body-midsize-medium" tagname="p">
+                        {msg.content}
+                      </Text>
                     </div>
-                  ))}
-                </>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* PRIMARY ACTIONS SECTION - ALWAYS ENABLED, NEVER DISABLED */}
+            <div className="primary-actions-section">
+              {/* Start Transfer Button - Only in form mode when NOT pending */}
+              {mode === 'form' && !isReviewPending && (
+                <Button 
+                  variant="primary"
+                  onClick={handleStartTransfer}
+                  disabled={!sourceUser || !targetUser}
+                >
+                  Start Transfer
+                </Button>
+              )}
+              
+              {/* Approval Required - Show when review is pending */}
+              {isReviewPending && (
+                <div className="approval-container">
+                  <div className="approval-banner">
+                    <Icon name="warning-regular" size={20} />
+                    <Text type="body-midsize-bold" tagname="span">Approval Required</Text>
+                  </div>
+                  <Text type="body-small-medium" tagname="p" className="approval-hint">
+                    Review changes in the Inspector panel →
+                  </Text>
+                  <div className="approval-actions">
+                    <Button 
+                      variant="primary" 
+                      prefixIcon="check-regular"
+                      onClick={handleApproveTransfer}
+                    >
+                      Approve & Apply
+                    </Button>
+                    <Button 
+                      variant="secondary" 
+                      prefixIcon="cancel-regular"
+                      onClick={handleCancelTransfer}
+                    >
+                      Reject
+                    </Button>
+                  </div>
+                </div>
               )}
             </div>
             
-            {/* Input Area */}
-            <div className={`input-area ${mode === 'form' ? 'input-disabled' : ''}`}>
-              <input
-                type="text"
-                placeholder={mode === 'form' ? 'Configure agent above to start...' : 'Ask a question...'}
-                className="chat-input"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                disabled={mode === 'form'}
-              />
-              <Button 
-                variant="primary" 
-                size={32}
-                prefixIcon="send-filled"
-                aria-label="Send message"
-                onClick={handleSendMessage}
-                disabled={mode === 'form' || !inputValue.trim()}
-              />
-            </div>
+            {/* Chat Input Area - Only in chat mode */}
+            {mode === 'chat' && (
+              <div className="input-area">
+                <input
+                  type="text"
+                  placeholder="Ask a question..."
+                  className="chat-input"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                />
+                <Button 
+                  variant="primary" 
+                  size={32}
+                  prefixIcon="send-filled"
+                  aria-label="Send message"
+                  onClick={handleSendMessage}
+                  disabled={!inputValue.trim()}
+                />
+              </div>
+            )}
           </div>
         </div>
 
@@ -684,26 +721,6 @@ const RunAgentPage: React.FC = () => {
                 </div>
               )}
             </div>
-            
-            {/* Footer Actions */}
-            {isReviewPending && (
-              <div className="inspector-footer">
-                <Button 
-                  variant="primary" 
-                  prefixIcon="check-regular"
-                  onClick={handleApproveTransfer}
-                >
-                  Approve Transfer
-                </Button>
-                <Button 
-                  variant="secondary" 
-                  prefixIcon="cancel-regular"
-                  onClick={handleCancelTransfer}
-                >
-                  Cancel
-                </Button>
-              </div>
-            )}
           </div>
         </div>
       </div>

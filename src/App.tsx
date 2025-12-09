@@ -2,8 +2,7 @@ import './App.css'
 import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
 import AIAgentPage from './pages/AIAgentPage'
-import AgentDetailsPage from './pages/AgentDetailsPage'
-import RunAgentPage from './pages/RunAgentPage'
+import AgentWorkspacePage from './pages/AgentWorkspacePage'
 import '@momentum-design/fonts/dist/css/fonts.css';
 import '@momentum-design/tokens/dist/css/components/complete.css';
 import { ThemeProvider, IconProvider } from '@momentum-design/components/react'
@@ -20,8 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/ai-agent" element={<AIAgentPage />} />
-              <Route path="/ai-agent/:agentId" element={<AgentDetailsPage />} />
-              <Route path="/ai-agent/:agentId/run" element={<RunAgentPage />} />
+              <Route path="/ai-agent/:agentId" element={<AgentWorkspacePage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </MainLayout>
