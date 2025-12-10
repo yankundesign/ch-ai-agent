@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Avatar, Text, Button, ToggleTip, Searchfield } from '@momentum-design/components/react';
+import { Avatar, Text, Button, Searchfield } from '@momentum-design/components/react';
 import { useNavigate } from 'react-router-dom';
 import { mockAgents } from '../data/mockAgents';
 import type { Agent, AgentStatus } from '../types/agent.types';
@@ -54,7 +54,7 @@ const AIAgentPage: React.FC = () => {
                 className={`ai-agent-tab ${isTabActive('agents') ? 'active' : ''}`}
                 onClick={() => handleTabChange('agents')}
             >
-                Skill
+                Skills
             </button>
             <button 
                 className={`ai-agent-tab ${isTabActive('knowledge') ? 'active' : ''}`}
@@ -135,7 +135,7 @@ const AIAgentPage: React.FC = () => {
                             />
                             
                             {/* Status filter dropdown */}
-                            <select
+                            {/* <select
                                 value={statusFilter}
                                 onChange={(e) => setStatusFilter(e.target.value as AgentStatus | 'all')}
                                 className="ai-agent-filter-select"
@@ -145,7 +145,7 @@ const AIAgentPage: React.FC = () => {
                                 <option value="draft">Draft</option>
                                 <option value="paused">Paused</option>
                                 <option value="failing">Failing</option>
-                            </select>
+                            </select> */}
                             
                             {/* Create button */}
                             <Button variant="primary" onClick={() => console.log('Create agent')}>

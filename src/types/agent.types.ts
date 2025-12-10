@@ -1,4 +1,4 @@
-export type AgentCategory = 'License optimization' | 'Meeting quality' | 'Security' | 'Automation' | 'Other';
+export type AgentCategory = 'License optimization' | 'Meeting quality' | 'Security' | 'Automation' | 'Device management' | 'GenAI' | 'Other';
 
 export type AgentSource = 'controlHub' | 'org';
 

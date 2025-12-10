@@ -12,7 +12,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/ch-ai-agent">
     <ThemeProvider themeclass={`mds-theme-stable-${theme}Webex`}>
       <IconProvider iconSet='momentum-icons'>
         <MainLayout theme={theme} setTheme={setTheme}>

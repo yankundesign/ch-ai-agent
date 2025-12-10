@@ -9,55 +9,58 @@ export const mockAgents: Agent[] = [
     description: 'Automatically transfer calling settings from one user to another.',
     source: 'controlHub',
     status: 'active',
+    successRate: 97,
     lastRunAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
   },
   {
     id: 'ch-2',
-    name: 'Meeting Quality Monitor',
-    category: 'Meeting quality',
-    description: 'Tracks meeting quality metrics and provides insights to improve collaboration effectiveness.',
+    name: 'Bulk device onboarding',
+    category: 'Device management',
+    description: 'Adds and configures large batches of Webex devices in one run, assigning them to workspaces, locations, and default policies.',
     source: 'controlHub',
     status: 'active',
+    successRate: 94,
     lastRunAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(), // 3 days ago
   },
   {
     id: 'ch-3',
-    name: 'Security Compliance Checker',
+    name: 'Security compliance checker',
     category: 'Security',
     description: 'Monitors security compliance across your organization and alerts on policy violations.',
     source: 'controlHub',
     status: 'active',
+    successRate: 99,
     lastRunAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(), // 5 days ago
   },
   
   // Organization agents
   {
     id: 'org-1',
-    name: 'Sales Call Summarizer',
+    name: 'Executive room readiness checker',
     category: 'Automation',
-    description: 'Automatically generates summaries of sales calls and extracts key action items.',
+    description: 'Runs pre-meeting checks on executive boardrooms (devices, network, calendar) and alerts IT if anything looks misconfigured before key events.',
     source: 'org',
     owner: 'Sarah Johnson',
-    team: 'Sales Operations',
+    team: 'IT Operations',
     lastRunAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 hours ago
     successRate: 98,
     status: 'active',
   },
   {
     id: 'org-2',
-    name: 'Onboarding Assistant',
+    name: 'Onboarding assistant',
     category: 'Automation',
     description: 'Guides new employees through the onboarding process and answers common questions.',
     source: 'org',
     owner: 'Mike Chen',
-    team: 'HR',
+    team: 'IT Operations',
     lastRunAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(), // 30 minutes ago
     successRate: 95,
     status: 'active',
   },
   {
     id: 'org-3',
-    name: 'License Usage Reporter',
+    name: 'License usage reporter',
     category: 'License optimization',
     description: 'Weekly report on license utilization across departments.',
     source: 'org',

@@ -3,11 +3,13 @@ import { Avatar, Text, Button, Icon } from '@momentum-design/components/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { mockAgentDatabase } from '../data/mockAgentDetails';
 import type { AgentDetails } from '../types/agentDetails.types';
+import type { UserSummary, RunSummary, CallingSettingRow } from '../types/askAi.types';
+import AskAiTab from '../components/askai/AskAiTab';
 import './runagentpage.css';
 
 type MessageType = 'user' | 'system' | 'config';
 type WorkflowStepStatus = 'pending' | 'running' | 'completed' | 'review' | 'failed';
-type InspectorTab = 'Preview' | 'Raw Data' | 'Context';
+type InspectorTab = 'Preview' | 'Ask AI' | 'Raw Data' | 'Context';
 
 interface Message {
   id: string;
@@ -27,13 +29,6 @@ interface WorkflowStepState {
   duration?: string;
 }
 
-interface CallingSettingRow {
-  setting: string;
-  currentValue: string;
-  newValue: string;
-  isChanged: boolean;
-  isDangerous?: boolean;
-}
 
 const RunAgentPage: React.FC = () => {
   const { agentId } = useParams<{ agentId: string }>();
@@ -54,6 +49,7 @@ const RunAgentPage: React.FC = () => {
   const [sourceUser, setSourceUser] = useState('');
   const [targetUser, setTargetUser] = useState('');
   const [transferSettings, setTransferSettings] = useState(true);
+  const [runId, setRunId] = useState<string>('');
   
   // Workflow State
   const [activeStepIndex, setActiveStepIndex] = useState<number>(-1);
@@ -134,6 +130,10 @@ const RunAgentPage: React.FC = () => {
       alert('Please select both Source and Target users');
       return;
     }
+
+    // Generate run ID
+    const newRunId = `RUN-${Date.now().toString(36).toUpperCase()}`;
+    setRunId(newRunId);
 
     // Add config summary to messages
     const configMessage: Message = {
@@ -267,6 +267,7 @@ const RunAgentPage: React.FC = () => {
     setTargetUser('');
     setTransferSettings(true);
     setActiveStepIndex(-1);
+    setRunId('');
     setWorkflowSteps([
       { 
         id: 'step1', 
@@ -328,6 +329,37 @@ const RunAgentPage: React.FC = () => {
   const isWorkflowComplete = workflowSteps.every(step => 
     step.status === 'completed' || step.status === 'pending'
   ) && workflowSteps.some(step => step.status === 'completed');
+
+  // Helper function to parse user name and email from select value
+  const parseUserInfo = (userString: string): UserSummary | undefined => {
+    if (!userString) return undefined;
+    const match = userString.match(/^(.+?)\s*\((.+?)\)$/);
+    if (match) {
+      return { name: match[1].trim(), email: match[2].trim() };
+    }
+    return { name: userString };
+  };
+
+  // Derive run summary for Ask AI
+  const getRunSummary = (): RunSummary => {
+    let status: RunSummary['status'] = 'idle';
+    
+    if (isWorkflowComplete) {
+      status = 'completed';
+    } else if (isReviewPending) {
+      status = 'awaitingApproval';
+    } else if (workflowSteps.some(step => step.status === 'running')) {
+      status = 'running';
+    }
+
+    const changedCount = callingSettingsDiff.filter(s => s.isChanged).length;
+
+    return {
+      id: runId || undefined,
+      status,
+      settingsChangedCount: changedCount,
+    };
+  };
 
   return (
     <div className="run-agent-wrapper">
@@ -610,7 +642,7 @@ const RunAgentPage: React.FC = () => {
             
             {/* Tabs */}
             <div className="inspector-tabs">
-              {(['Preview', 'Raw Data', 'Context'] as InspectorTab[]).map(tab => (
+              {(['Preview', 'Ask AI', 'Raw Data', 'Context'] as InspectorTab[]).map(tab => (
                 <button
                   key={tab}
                   className={`inspector-tab ${activeTab === tab ? 'tab-active' : ''}`}
@@ -623,12 +655,22 @@ const RunAgentPage: React.FC = () => {
             
             {/* Tab Content */}
             <div className="inspector-body">
+              {activeTab === 'Ask AI' && (
+                <AskAiTab
+                  agentName={agent.name}
+                  sourceUser={parseUserInfo(sourceUser)}
+                  targetUser={parseUserInfo(targetUser)}
+                  runSummary={getRunSummary()}
+                  settingsDiff={callingSettingsDiff}
+                />
+              )}
+              
               {activeTab === 'Preview' && (
                 <>
                   {activeStepIndex < 2 && (
                     <div className="inspector-placeholder">
                       <div className="placeholder-icon-wrapper">
-                        <img src="/call-voicemail-192.svg" alt="Waiting" className="placeholder-svg-icon" />
+                        <img src="/ch-ai-agent/call-voicemail-192.svg" alt="Waiting" className="placeholder-svg-icon" />
                       </div>
                       <Text type="body-large-medium" tagname="p">
                         Waiting to start...

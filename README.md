@@ -5,6 +5,59 @@ This starter repository includes a basic React app setup using [Momentum Design 
 - Github repo: <https://github.com/momentum-design/momentum-design>
 - NPM Package: <https://www.npmjs.com/package/@momentum-design/components>
 
+## Setup
+
+### Environment Variables
+
+To use the **Ask AI** feature on the Agent Run page, you need to configure an OpenAI API key:
+
+1. Copy `ENV_TEMPLATE` to `.env`:
+   ```bash
+   cp ENV_TEMPLATE .env
+   ```
+
+2. Get your OpenAI API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+
+3. Add your API key to the `.env` file:
+   ```
+   AI_AGENT_API_KEY=sk-your-actual-key-here
+   ```
+
+**Important:** Never commit your `.env` file with real API keys to version control. The `.env` file is already in `.gitignore`.
+
+### Ask AI Feature
+
+The Ask AI tab in the Inspector panel provides an interactive chat experience to:
+- Explain what the agent does and how it affects users
+- Help review proposed setting changes
+- Answer questions about transfers and potential impacts
+- Provide guidance on when to approve or reject changes
+
+**Note:** The AI assistant is for guidance only and cannot execute changes. All actions (Run, Approve, Reject) must be performed via the Control Panel.
+
+### Backend API Setup
+
+The Ask AI feature requires a backend API to securely proxy requests to OpenAI. The `/api/ask-ai-agent` endpoint is implemented as a serverless function.
+
+**For local development:**
+- The API expects the `AI_AGENT_API_KEY` environment variable to be set
+- You may need to set up a local serverless function environment (e.g., using Vercel CLI)
+
+**For Vercel deployment:**
+1. Install Vercel CLI: `npm i -g vercel`
+2. Deploy: `vercel`
+3. Set the environment variable:
+   ```bash
+   vercel env add AI_AGENT_API_KEY
+   ```
+   Then paste your OpenAI API key when prompted
+
+**For other hosting providers:**
+- Ensure your hosting supports Node.js serverless functions or API routes
+- Configure the `AI_AGENT_API_KEY` environment variable in your hosting dashboard
+- The API handler is located in `/api/ask-ai-agent.ts`
+
+
 ## Caveats
 
 This repository is a Starter Kit only - it is not optimised for production and should not be used for production purposes without adjustments to the build tooling & code.

@@ -143,79 +143,79 @@ export const mockAgentDatabase: AgentDetails[] = [
     ]
   },
 
-  // Agent 2: Sales Call Summarizer (Placeholder - GenAI type)
+  // Agent 2: Bulk Device Onboarding (Device Management type)
   {
     id: 'ch-2',
-    name: 'Sales Call Summarizer',
+    name: 'Bulk device onboarding',
     version: '2.0.1',
     status: 'active',
-    category: 'GenAI',
+    category: 'Device management',
     complexity: 'High Impact',
-    description: 'Automatically generates AI-powered summaries of sales calls and extracts key action items, customer pain points, and opportunities. Uses advanced NLP to transcribe and analyze conversations.',
-    expectedOutcome: 'Generates a concise summary PDF and emails it to the sales representative and CRM.',
+    description: 'Adds and configures large batches of Webex devices in one run, assigning them to workspaces, locations, and default policies from a CSV or inventory source.',
+    expectedOutcome: 'All devices are registered, assigned to locations, and configured with baseline policies.',
     riskLevel: 'safe',
-    documentationUrl: 'https://example.com/sales-summarizer-docs',
+    documentationUrl: 'https://example.com/device-onboarding-docs',
     owner: {
-      name: 'Sales Ops',
-      team: 'Revenue Operations',
-      avatarInitials: 'SO'
+      name: 'Device Ops',
+      team: 'IT Operations',
+      avatarInitials: 'DO'
     },
     lastUpdated: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(), // 10 days ago
     inputs: [
       {
         id: 'input-1',
-        label: 'Meeting ID',
-        type: 'String',
+        label: 'CSV File Upload',
+        type: 'File',
         required: true,
-        description: 'Unique identifier for the meeting recording'
+        description: 'CSV file with device MAC addresses and location mappings'
       },
       {
         id: 'input-2',
-        label: 'Include Transcript',
-        type: 'Boolean',
+        label: 'Default Policy Template',
+        type: 'String',
         required: false,
-        description: 'Whether to include full transcript in summary'
+        description: 'Name of the policy template to apply to all devices'
       }
     ],
     workflow: [
       {
         id: 'step-1',
-        title: 'Fetch Recording',
-        description: 'Retrieve the call recording from Webex storage.',
-        icon: 'download-regular'
+        title: 'Parse CSV File',
+        description: 'Extract device identifiers and workspace assignments.',
+        icon: 'document-regular'
       },
       {
         id: 'step-2',
-        title: 'Transcribe Audio',
-        description: 'Convert audio to text using speech-to-text engine.',
-        icon: 'transcription-regular'
+        title: 'Validate Devices',
+        description: 'Check if devices are compatible and not already registered.',
+        icon: 'check-circle-regular'
       },
       {
         id: 'step-3',
-        title: 'LLM Analysis',
-        description: 'Use AI to identify key points, action items, and sentiment.',
-        icon: 'sparkle-regular',
-        knowledgeDocs: ['Sales_Playbook_2025.pdf']
+        title: 'Register Devices',
+        description: 'Add devices to Control Hub and assign to workspaces.',
+        icon: 'device-connection-regular',
+        knowledgeDocs: ['Device_Compatibility_Guide.pdf']
       },
       {
         id: 'step-4',
-        title: 'Email Summary',
-        description: 'Create structured summary document and send via email.',
-        icon: 'email-regular'
+        title: 'Apply Policies',
+        description: 'Configure baseline settings and policies for each device.',
+        icon: 'settings-regular'
       }
     ],
     hasKnowledge: true,
-    knowledgeSources: ['Sales_Playbook_2025.pdf'],
+    knowledgeSources: ['Device_Compatibility_Guide.pdf'],
     metrics: {
-      successRate: 96,
-      runsLast30Days: 1547,
-      uniqueAdmins: 87,
+      successRate: 94,
+      runsLast30Days: 156,
+      uniqueAdmins: 8,
       usersMigrated: 0, // Not applicable for this agent type
-      guardrailBlocks: 12,
-      incidentsReported: 1,
-      averageDurationSeconds: 192, // 3.2 minutes
-      totalRuns: 1547,
-      avgDuration: 3.2, // legacy
+      guardrailBlocks: 5,
+      incidentsReported: 0,
+      averageDurationSeconds: 420, // 7 minutes
+      totalRuns: 156,
+      avgDuration: 7, // legacy
       lastRunTime: new Date(Date.now() - 30 * 60 * 1000).toISOString() // 30 min ago
     },
     guardrails: [

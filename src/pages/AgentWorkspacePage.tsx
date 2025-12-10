@@ -3,6 +3,8 @@ import { Avatar, Text, Button, Icon, Chip, Accordion } from '@momentum-design/co
 import { useNavigate, useParams } from 'react-router-dom';
 import { mockAgentDatabase } from '../data/mockAgentDetails';
 import type { AgentDetails, WorkflowStep, AgentInput, Guardrail, RunHistory, AdvancedSettings } from '../types/agentDetails.types';
+import type { UserSummary, RunSummary as AskAiRunSummary, CallingSettingRow as AskAiCallingSettingRow } from '../types/askAi.types';
+import AskAiTab from '../components/askai/AskAiTab';
 import { getGuardrailIcon } from '../utils/iconMapping';
 import './agentdetailspage.css';
 import './runagentpage.css';
@@ -14,7 +16,7 @@ type AgentState = 'idle' | 'running' | 'review' | 'done';
 
 type MessageType = 'user' | 'system' | 'config';
 type WorkflowStepStatus = 'pending' | 'running' | 'completed' | 'review' | 'failed';
-type InspectorTab = 'Preview' | 'Raw Data' | 'Context';
+type InspectorTab = 'Preview' | 'Ask AI' | 'Raw Data' | 'Context';
 
 interface Message {
   id: string;
@@ -661,7 +663,7 @@ const AgentWorkspacePage: React.FC = () => {
                     {/* Agent Overview */}
                     <div className="agent-overview-card">
                         <div className="overview-header">
-                            <Text type="heading-small-bold" tagname="h3" className="overview-title">Agent Overview</Text>
+                            <Text type="heading-small-bold" tagname="h3" className="overview-title">Overview</Text>
                         </div>
                         
                         <div className="overview-content">
@@ -792,7 +794,24 @@ const AgentWorkspacePage: React.FC = () => {
                     </div> */}
                 </div>
 
-                {/* Row 3: Guardrails + Run History */}
+                {/* Row 3: Knowledge (Full Width) */}
+                {agent.hasKnowledge && agent.knowledgeSources && (
+                  <div className="agent-details-card">
+                    <Text type="heading-small-bold" tagname="h3" className="card-title">Knowledge</Text>
+                    <div className="knowledge-section" style={{ marginTop: '0', borderTop: 'none', paddingTop: '0' }}>
+                      <div className="knowledge-attachments">
+                        {agent.knowledgeSources.map((source, index) => (
+                          <div key={index} className="knowledge-attachment-item">
+                            <Icon name="document-regular" size={16} />
+                            <Text type="body-midsize-medium" tagname="span">{source}</Text>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Row 4: Guardrails + Run History */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                     {/* Guardrails */}
                     <div className="agent-details-card">
@@ -832,23 +851,6 @@ const AgentWorkspacePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Row 4: Knowledge (Full Width) */}
-                {agent.hasKnowledge && agent.knowledgeSources && (
-                  <div className="agent-details-card">
-                    <Text type="heading-small-bold" tagname="h3" className="card-title">Knowledge</Text>
-                    <div className="knowledge-section" style={{ marginTop: '0', borderTop: 'none', paddingTop: '0' }}>
-                      <div className="knowledge-attachments">
-                        {agent.knowledgeSources.map((source, index) => (
-                          <div key={index} className="knowledge-attachment-item">
-                            <Icon name="document-regular" size={16} />
-                            <Text type="body-midsize-medium" tagname="span">{source}</Text>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
             </div>
         );
     } else {
@@ -907,7 +909,7 @@ const AgentWorkspacePage: React.FC = () => {
                       <Text type="heading-small-bold" tagname="h3">Inspector</Text>
                     </div>
                     <div className="inspector-tabs">
-                      {(['Preview', 'Raw Data', 'Context'] as InspectorTab[]).map(tab => (
+                      {(['Preview', 'Ask AI', 'Raw Data', 'Context'] as InspectorTab[]).map(tab => (
                         <button
                           key={tab}
                           className={`inspector-tab ${activeTab === tab ? 'tab-active' : ''}`}
@@ -919,12 +921,24 @@ const AgentWorkspacePage: React.FC = () => {
                     </div>
                     
                     <div className="inspector-body">
+                         {activeTab === 'Ask AI' && (
+                           <AskAiTab
+                             agentName={agent.name}
+                             sourceUser={sourceUser ? { name: sourceUser.split(' (')[0], email: sourceUser.match(/\((.+)\)/)?.[1] } : undefined}
+                             targetUser={targetUser ? { name: targetUser.split(' (')[0], email: targetUser.match(/\((.+)\)/)?.[1] } : undefined}
+                             runSummary={{
+                               status: agentState === 'idle' ? 'idle' : agentState === 'running' ? 'running' : agentState === 'review' ? 'awaitingApproval' : 'completed',
+                               settingsChangedCount: callingSettingsDiff.filter(s => s.isChanged).length,
+                             }}
+                             settingsDiff={callingSettingsDiff}
+                           />
+                         )}
                          {activeTab === 'Preview' && (
                              <>
                                 {activeStepIndex < 2 ? (
                                     <div className="inspector-placeholder">
                                       <div className="placeholder-icon-wrapper">
-                                        <img src="/call-voicemail-192.svg" alt="Waiting" className="placeholder-svg-icon" />
+                                        <img src="/ch-ai-agent/call-voicemail-192.svg" alt="Waiting" className="placeholder-svg-icon" />
                                       </div>
                                       <Text type="body-large-medium" tagname="p">Processing...</Text>
                                       <Text type="body-small-medium" tagname="p" className="placeholder-hint">The agent is fetching and analyzing data.</Text>
