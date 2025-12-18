@@ -1233,7 +1233,7 @@ const AgentWorkspacePage: React.FC = () => {
             
             <div className="agent-details-title-row">
               <div className="agent-details-title-left">
-                <h1>{agent.name}</h1>
+                <h2>{agent.name}</h2>
                 <Chip label={agent.version} size={24} />
                 <div className={`agent-status-indicator status-${agent.status}`}>{agent.status}</div>
                 <Tabs
