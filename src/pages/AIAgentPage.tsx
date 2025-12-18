@@ -95,10 +95,10 @@ const AIAgentPage: React.FC = () => {
                 </div>
                 <div className="ai-agent-page-middle-section">
                     <div className="ai-agent-page-middle-section-first-line">
-                        <Text type="heading-midsize-bold" tagname='span'>Control hub agent</Text>
+                        <Text type="heading-midsize-bold" tagname='span'>Control Hub agent</Text>
                     </div>
                     <div className="ai-agent-page-middle-section-second-line">
-                        <Text type="body-midsize-medium" tagname='span'>AI Agent workspace</Text>
+                        <Text type="body-midsize-medium" tagname='span'>AI agent workspace</Text>
                     </div>
                 </div>
             </div>
@@ -158,8 +158,8 @@ const AIAgentPage: React.FC = () => {
                     <div className="ai-agent-content">
                         {controlHubAgents.length > 0 && (
                             <div className="ai-agent-section">
-                                <Text type="heading-small-regular" tagname="h5" className="ai-agent-section-title">
-                                    Default skills ({controlHubAgents.length})
+                                <Text tagname="h5" className="ai-agent-section-title">
+                                    Pre-built skills ({controlHubAgents.length})
                                 </Text>
                                 <div className="ai-agent-cards-grid">
                                     {controlHubAgents.map((agent: Agent) => (
@@ -174,8 +174,8 @@ const AIAgentPage: React.FC = () => {
                         )}
 
                         <div className="ai-agent-section ai-agent-section-org">
-                            <Text type="heading-small-regular" tagname="h5" className="ai-agent-section-title">
-                                Custom skills ({orgAgents.length})
+                            <Text tagname="h5" className="ai-agent-section-title">
+                                Created skills ({orgAgents.length})
                             </Text>
                             {orgAgents.length > 0 ? (
                                 <div className="ai-agent-cards-grid">

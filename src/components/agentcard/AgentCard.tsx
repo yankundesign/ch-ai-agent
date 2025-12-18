@@ -16,6 +16,8 @@ const getCategoryColor = (category: AgentCategory): string => {
     'Automation': 'category-automation',
     'License optimization': 'category-license',
     'Meeting quality': 'category-meeting',
+    'Device management': 'category-device',
+    'GenAI': 'category-genai',
     'Other': 'category-default'
   };
   return colorMap[category] || 'category-default';

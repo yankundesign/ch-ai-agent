@@ -165,7 +165,7 @@ export const mockAgentDatabase: AgentDetails[] = [
       {
         id: 'input-1',
         label: 'CSV File Upload',
-        type: 'File',
+        type: 'String',
         required: true,
         description: 'CSV file with device MAC addresses and location mappings'
       },

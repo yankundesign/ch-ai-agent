@@ -3,7 +3,18 @@
     height: calc(100% - 2 * var(--local-padding));
     width: calc(100% - 2 * var(--local-padding));
     border-top-left-radius: 1rem;
-    background-color: var(--mds-color-theme-background-glass-light);
+    /* Blue-toned gradient background */
+    background: linear-gradient(
+        180deg,
+        rgba(20, 30, 48, 1) 0%,
+        rgba(15, 20, 30, 1) 60%,
+        rgba(10, 15, 22, 1) 100%
+    );
+    /* Add subtle dot grid overlay */
+    background-image: 
+        radial-gradient(circle, rgba(100, 150, 200, 0.03) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(20, 30, 48, 1) 0%, rgba(10, 15, 22, 1) 100%);
+    background-size: 32px 32px, 100% 100%;
     padding: 40px;
     backdrop-filter: blur(400px);
     overflow-y: auto;
@@ -37,8 +48,9 @@
 .ai-agent-tabs {
     display: flex;
     gap: 0.5rem;
-    border-bottom: 2px solid var(--mds-color-theme-outline-secondary);
-    margin-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(100, 150, 200, 0.15); /* Blue-tinted */
+    margin-bottom: 16px; /* More space below */
+    padding-top: 8px;
 }
 
 .ai-agent-tab {
@@ -56,11 +68,13 @@
 
 .ai-agent-tab:hover {
     color: var(--mds-color-theme-text-primary);
+    background: rgba(30, 45, 70, 0.3); /* Subtle blue-tinted hover */
+    border-radius: 8px 8px 0 0;
 }
 
 .ai-agent-tab.active {
     color: var(--mds-color-theme-text-primary);
-    border-bottom-color: var(--mds-color-theme-outline-primary);
+    border-bottom-color: rgba(96, 165, 250, 0.8); /* Blue accent */
 }
 
 /* Metrics strip */
@@ -92,18 +106,33 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 12px
 }
 
 .ai-agent-toolbar {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 16px; /* Increased from 0.75rem */
 }
 
 /* Searchfield styling */
 .ai-agent-searchfield {
-    min-width: 220px;
+    min-width: 240px;
+}
+
+/* Style Create skill button with pill shape and blue glow */
+.ai-agent-toolbar mdc-button[variant="primary"] {
+    border-radius: 24px;
+    box-shadow: 
+        0 4px 12px rgba(59, 130, 246, 0.3),
+        0 0 16px rgba(59, 130, 246, 0.2);
+}
+
+.ai-agent-toolbar mdc-button[variant="primary"]:hover {
+    box-shadow: 
+        0 6px 16px rgba(59, 130, 246, 0.4),
+        0 0 24px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px);
 }
 
 /* Filter select */
@@ -148,22 +177,43 @@
 .ai-agent-content {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: px;
+    position: relative;
+}
+
+/* Optional subtle dot grid texture overlay */
+.ai-agent-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(
+        circle,
+        rgba(100, 150, 200, 0.02) 1px,
+        transparent 1px
+    );
+    background-size: 24px 24px;
+    pointer-events: none;
+    opacity: 0.3;
 }
 
 .ai-agent-section {
     display: flex;
     flex-direction: column;
+    margin-bottom: 12px; /* Increased spacing */
 }
 
 .ai-agent-section-org {
-    margin-top: 4rem; /* Significant spacing above "Your organization" section */
+    margin-top: 12px; /* Increased from 4rem for more breathing room */
 }
 
 .ai-agent-section-title {
     align-items: center;
     display: flex;
     height: 64px;
+    padding-bottom: 8px; /* More space below title */
 }
 
 /* Cards grid */
@@ -171,7 +221,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 24px;
+    gap: 32px; /* Increased from 24px for less density */
 }
 
 .ai-agent-cards-grid > * {
@@ -184,8 +234,9 @@
 .ai-agent-empty-state {
     padding: 2rem;
     text-align: center;
-    background-color: var(--mds-color-theme-background-secondary);
-    border-radius: 8px;
+    background: rgba(30, 45, 70, 0.3); /* Blue-tinted */
+    border: 1px solid rgba(100, 150, 200, 0.15);
+    border-radius: 12px;
     color: var(--mds-color-theme-text-secondary);
 }
 

@@ -1,0 +1,83 @@
+---
+alwaysApply: true
+---
+Rule: Design-First, Modern UI Frontend
+
+When working on any frontend or UI code (HTML/CSS/JS/TS/React/etc.), behave as a senior product designer + frontend engineer. Your top priority is to create beautiful, modern, highly polished interfaces, not just functional layouts.
+
+Follow these principles every time:
+
+Visual language & layout
+
+Use a clean, modern aesthetic: generous whitespace, soft rounded corners, subtle shadows, and minimal borders.
+
+Favor simple, clear layouts with strong visual hierarchy (one primary action, clear secondary actions).
+
+Use consistent spacing scale (e.g. 4 / 8 / 12 / 16 / 24 / 32px). No random values unless there is a strong reason.
+
+Typography
+
+Treat type as a design system: clear type scale (e.g. display, h1–h4, body, caption).
+
+Use hierarchy with size + weight + spacing (e.g. title bigger + bolder, body regular, captions small & subtle).
+
+Line-height must be readable (around 1.4–1.6 for body text) and avoid cramped text blocks.
+
+Color & theme
+
+Use a limited, cohesive palette: 1–2 accent colors, neutrals for background and surfaces.
+
+Prefer soft gradients / subtle tints over harsh, pure colors.
+
+Always ensure contrast and accessibility (WCAG friendly for text vs background).
+
+Components & states
+
+Buttons, inputs, cards, modals, tabs, etc. should feel cohesive: same radius, shadow style, hover/focus treatment.
+
+Always include hover, active, focus, disabled states in CSS or component props (e.g. focus ring, pressed shadow).
+
+Use semantic HTML and ARIA where needed for better accessibility.
+
+Motion & micro-interactions
+
+Use subtle, tasteful animations (no jarring or overly fast transitions):
+
+Default transitions ~150–250ms for opacity/position.
+
+Use easing like ease-out or cubic-bezier curves that feel natural.
+
+Animate small things: button hover elevation, menu open/close, card hover, chip selection, etc.
+
+Motion should clarify state changes, not distract.
+
+Responsiveness & layout behavior
+
+Design mobile-first or responsive-first: components should adapt gracefully from mobile to desktop.
+
+Use flexible layouts (flex/grid) instead of fixed widths where possible.
+
+Avoid horizontal scrolling on small screens unless it’s an intentional, clearly indicated pattern.
+
+Code style for UI
+
+Prioritize readable, structured code that mirrors the visual hierarchy:
+
+Group related sections into components.
+
+Name components and classes semantically (e.g. PrimaryButton, SidebarNav, SectionHeader).
+
+Avoid inline “magic numbers”; prefer design tokens / variables for spacing, colors, radii, shadows.
+
+Add short comments only where they clarify tricky visual logic or animation.
+
+When generating examples
+
+Prefer modern patterns: cards, sticky headers, pill chips, subtle gradient backgrounds, sectioned layouts.
+
+Show a cohesive screen, not just isolated elements, whenever possible (e.g., header, main content, sidebar, CTA).
+
+Before finalizing, mentally review the UI for: spacing consistency, type hierarchy, color balance, and motion.
+
+Important:
+Even when the user says “quick prototype” or “just make it work,” you should still aim for visually refined, modern UI and call out any design trade-offs you’re making.

@@ -1,0 +1,69 @@
+/* Tabs Container - Toggle/Button Tab Style */
+.tabs-container {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tab Button Overrides - Toggle Tab Style */
+.tabs-container .tab-button {
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--mds-color-theme-text-secondary) !important;
+}
+
+/* Remove momentum button default styles */
+.tabs-container mdc-button {
+  --mds-button-default-background-color: transparent;
+  --mds-button-hover-background-color: rgba(255, 255, 255, 0.05);
+  --mds-button-pressed-background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Active tab styling - looks like a selected toggle */
+.tabs-container .tab-button.tab-active {
+  background-color: rgba(13, 110, 253, 0.2) !important;
+  color: var(--mds-color-theme-text-primary) !important;
+  font-weight: 600;
+  border: 1px solid rgba(13, 110, 253, 0.4) !important;
+}
+
+/* Size variants */
+.tabs-small .tab-button {
+  padding: 6px 12px;
+  font-size: 13px;
+  min-width: 90px;
+}
+
+.tabs-medium .tab-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-width: 120px;
+}
+
+.tabs-large .tab-button {
+  padding: 10px 20px;
+  font-size: 15px;
+  min-width: 140px;
+}
+
+/* Hover states for non-active tabs */
+.tabs-container .tab-button:not(.tab-active):hover {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--mds-color-theme-text-primary) !important;
+}
+
+/* Focus states */
+.tabs-container .tab-button:focus-visible {
+  outline: 2px solid rgba(13, 110, 253, 0.5);
+  outline-offset: 2px;
+}
+

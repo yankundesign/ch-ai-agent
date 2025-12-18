@@ -31,9 +31,9 @@ const SideNav: React.FC<SideNavProps> = ({ isSideNavExpanded, setIsSideNavExpand
                     <NavMenuItem iconName="dashboard-regular" navId="1" label="Overview" onClick={() => handleNavItemClick('/')} active={location.pathname === '/'}></NavMenuItem>
                     <NavMenuItem iconName="alert-regular" navId="2" label="Alert center" onClick={() => handleNavItemClick('/')}></NavMenuItem>
                 </MenuSection>
-                <MenuSection slot="scrollable-menubar" showDivider headerText="AI studio">
-                    <NavMenuItem iconName="sparkle-regular" navId="3" label="AI hub" onClick={() => handleNavItemClick('/')}></NavMenuItem>
-                    <NavMenuItem iconName="bot-regular" navId="4" label="Control hub agent" onClick={() => handleNavItemClick('/ai-agent')} active={location.pathname === '/ai-agent'}></NavMenuItem>
+                <MenuSection slot="scrollable-menubar" showDivider headerText="AI hub">
+                    <NavMenuItem iconName="sparkle-regular" navId="3" label="AI settings" onClick={() => handleNavItemClick('/')}></NavMenuItem>
+                    <NavMenuItem iconName="bot-regular" navId="4" label="Control Hub agent" onClick={() => handleNavItemClick('/ai-agent')} active={location.pathname === '/ai-agent'}></NavMenuItem>
                 </MenuSection>
                 <MenuSection slot="scrollable-menubar" showDivider headerText="Monitoring">
                     <NavMenuItem iconName="analysis-regular" navId="5" label="Analytics" onClick={() => handleNavItemClick('/')}></NavMenuItem>
