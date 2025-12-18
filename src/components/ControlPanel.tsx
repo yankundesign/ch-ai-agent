@@ -483,21 +483,21 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
           {runPhase === 'idle' && (
             <>
               {setupIntent === 'run' && (
-                <div style={{ position: 'relative', width: '100%' }}>
-                  <Button
-                    variant="primary"
-                    prefixIcon="play-circle-regular"
-                    onClick={handleRunClick}
-                    disabled={false}
-                  >
-                    Run agent
-                  </Button>
-                  {showValidationTooltip && (
-                    <div className="validation-tooltip">
-                      Please select both source and target users above
-                    </div>
-                  )}
+            <div style={{ position: 'relative', width: '100%' }}>
+              <Button
+                variant="primary"
+                prefixIcon="play-circle-regular"
+                onClick={handleRunClick}
+                disabled={false}
+              >
+                Run agent
+              </Button>
+              {showValidationTooltip && (
+                <div className="validation-tooltip">
+                  Please select both source and target users above
                 </div>
+              )}
+            </div>
               )}
               {setupIntent === 'test' && (
                 <div style={{ position: 'relative', width: '100%' }}>

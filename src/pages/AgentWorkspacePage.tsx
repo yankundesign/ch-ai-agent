@@ -960,22 +960,22 @@ const AgentWorkspacePage: React.FC = () => {
 
             {/* CTA Section */}
             {!isSetupOpen && (
-              <div className="overview-cta-section">
-                <Button
-                  variant="primary"
-                  prefixIcon="play-circle-regular"
-                  onClick={() => handleOpenSetup('run')}
-                >
-                  Run agent
-                </Button>
-                <Button
-                  variant="secondary"
-                  prefixIcon="analysis-regular"
-                  onClick={() => handleOpenSetup('test')}
-                >
-                  Test agent
-                </Button>
-              </div>
+            <div className="overview-cta-section">
+              <Button
+                variant="primary"
+                prefixIcon="play-circle-regular"
+                onClick={() => handleOpenSetup('run')}
+              >
+                Run agent
+              </Button>
+              <Button
+                variant="secondary"
+                prefixIcon="analysis-regular"
+                onClick={() => handleOpenSetup('test')}
+              >
+                Test agent
+              </Button>
+            </div>
             )}
           </div>
         </div>
