@@ -1012,27 +1012,76 @@ const AgentWorkspacePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Workflow - Full vertical stepper */}
+        {/* Workflow - Compact hexagon workflow */}
         <div className="agent-details-card workflow-card" style={{ minWidth: 0 }}>
           <Text type="heading-small-bold" tagname="h3" className="card-title">Workflow</Text>
-          <div className="workflow-visualization">
-            {agent.workflow.map((step: WorkflowStep, index: number) => (
-              <div 
-                key={step.id} 
-                className="workflow-step-timeline"
-              >
-                <div className="timeline-track">
-                  <div className="step-icon-circle" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }}>
-                    <Icon name={step.icon as any} size={20} />
-                  </div>
-                  {index < agent.workflow.length - 1 && <div className="timeline-connector" />}
+          <div className="workflow-compact-list">
+            <div className="workflow-compact-step">
+              <div className="workflow-step-track">
+                <div className="workflow-hexagon-container">
+                  <svg width="32" height="32" viewBox="0 0 32 32" className="workflow-hexagon-bg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
+                  </svg>
+                  <Icon name="contact-card-regular" size={16} className="workflow-hexagon-icon" />
                 </div>
-                <div className="step-content">
-                  <Text type="body-large-bold" tagname="div">{step.title}</Text>
-                  <Text type="body-small-medium" tagname="p" className="step-description">{step.description}</Text>
+                <div className="workflow-connector-line"></div>
+              </div>
+              <div className="workflow-step-text">
+                <Text type="body-midsize-medium" tagname="span">
+                  <strong>Fetch profiles</strong> – read current settings for both users
+                </Text>
+              </div>
+            </div>
+
+            <div className="workflow-compact-step">
+              <div className="workflow-step-track">
+                <div className="workflow-hexagon-container">
+                  <svg width="32" height="32" viewBox="0 0 32 32" className="workflow-hexagon-bg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
+                  </svg>
+                  <Icon name="search-regular" size={16} className="workflow-hexagon-icon" />
+                </div>
+                <div className="workflow-connector-line"></div>
+              </div>
+              <div className="workflow-step-text">
+                <Text type="body-midsize-medium" tagname="span">
+                  <strong>Analyze differences</strong> – detect conflicts or missing licenses
+                </Text>
+              </div>
+            </div>
+
+            <div className="workflow-compact-step">
+              <div className="workflow-step-track">
+                <div className="workflow-hexagon-container">
+                  <svg width="32" height="32" viewBox="0 0 32 32" className="workflow-hexagon-bg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
+                  </svg>
+                  <Icon name="document-regular" size={16} className="workflow-hexagon-icon" />
+                </div>
+                <div className="workflow-connector-line"></div>
+              </div>
+              <div className="workflow-step-text">
+                <Text type="body-midsize-medium" tagname="span">
+                  <strong>Propose changes</strong> – show you everything that will change
+                </Text>
+              </div>
+            </div>
+
+            <div className="workflow-compact-step">
+              <div className="workflow-step-track">
+                <div className="workflow-hexagon-container">
+                  <svg width="32" height="32" viewBox="0 0 32 32" className="workflow-hexagon-bg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
+                  </svg>
+                  <Icon name="check-circle-regular" size={16} className="workflow-hexagon-icon" />
                 </div>
               </div>
-            ))}
+              <div className="workflow-step-text">
+                <Text type="body-midsize-medium" tagname="span">
+                  <strong>Apply transfer</strong> – only after you approve
+                </Text>
+              </div>
+            </div>
           </div>
         </div>
       </div>

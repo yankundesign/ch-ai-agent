@@ -218,6 +218,11 @@
   grid-auto-rows: 1fr; /* Makes all rows equal height */
 }
 
+/* Remove max-width constraint on overview card in Details tab */
+.details-canvas .agent-overview-card {
+  max-width: none;
+}
+
 /* Run tab keeps single column */
 .run-overview-workflow-stacked .agent-overview-workflow-row {
   display: flex;
@@ -2384,10 +2389,9 @@
 .run-canvas {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100%;
   height: 100%;
-  padding-top: 40px;
   background: 
     radial-gradient(ellipse 1200px 800px at bottom left, rgba(6, 182, 212, 0.4) 0%, transparent 60%),
     radial-gradient(ellipse 1200px 800px at bottom right, rgba(34, 197, 94, 0.35) 0%, transparent 60%),
@@ -2425,7 +2429,8 @@
   flex-direction: column;
   gap: 24px;
   overflow-y: auto;
-  padding: 24px 48px 0px 48px;
+  padding: 48px 64px 48px 64px;
+  max-width: 100%;
 }
 
 /* Responsive Layout for Skill Workspace */
